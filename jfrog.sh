@@ -12,7 +12,7 @@ if [ $status == 0 ]
   	echo "start ci build"
     
     project=wezva;
-    branch=$(git  git rev-parse --abbrev-ref HEAD)
+    branch=$(git rev-parse --abbrev-ref HEAD)
     buildtype=$JOB_NAME
     buildNo=$BUILD_NUMBER
   	tar -cvfz $project_$branch_$buildtype_$buildNo_.zip ./webapp/target/*.war
