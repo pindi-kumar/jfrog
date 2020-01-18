@@ -19,8 +19,9 @@ if [ $status == 0 ]
 
   	curl -u 'admin:38920139' -XPUT "http://13.233.99.57:8081/artifactory/CI-BUILDS/" -T $project_$branch-$buildtype-$buildNo.zip
 
+
   	rm -rf ./$project_$branch-$buildtype-$buildNo.zip
 
-else
+    else
 	echo "this is artifactory niku ardhamavthundha"
 fi
