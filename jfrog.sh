@@ -1,5 +1,5 @@
 #!/bin/bash
-CI_BUILD () {
+CI_BUILDS () {
 echo "start the build"
 
 mvn package
@@ -55,7 +55,7 @@ fi
 }
 
 
-if [ $1 == CI_BUILD ] ;
+if [ $1 == CI_BUILDS ] ;
   then
   	CI_BUILD
   else
