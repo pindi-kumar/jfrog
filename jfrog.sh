@@ -12,7 +12,7 @@ if [ $status == 0 ]
   	echo "start ci build"
     project=wezva;
     
-    branch=$GIT_BRANCH 
+    branch=$($GIT_BRANCH | xargs sed 's/\//-/g')
     buildtype=$JOB_NAME
     buildNo=$BUILD_NUMBER
   	tar -cvf $project-$branch-$buildtype-$buildNo.zip ./webapp/target/*.war
