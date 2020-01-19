@@ -18,11 +18,11 @@ if [ $status == 0 ]
          branch=$(cat test1.txt |sed 's/\//-/g' )
          buildtype=$JOB_NAME
          buildNo=$BUILD_NUMBER
-  	 tar -cvf $project--$branch--$buildtype--$buildNo.zip ./webapp/target/*.war
+  	 tar -cvf $project--$branch--$buildtype--$buildNo.tar ./webapp/target/*.war
 
-  	 curl -u 'admin:38920139' -XPUT "http://35.154.161.74:8081/artifactory/CI-BUILDS/" -T $project--$branch--$buildtype--$buildNo.zip
+  	 curl -u 'admin:38920139' -XPUT "http://35.154.161.74:8081/artifactory/CI-BUILDS/" -T $project--$branch--$buildtype--$buildNo.tar
 
-  	 rm -rf ./$project--$branch--$buildtype--$buildNo.zip
+  	 rm -rf ./$project--$branch--$buildtype--$buildNo.tar
 
   else
     	echo "unable to push arifact bcz of build failure"
