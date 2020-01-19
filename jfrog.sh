@@ -1,5 +1,5 @@
 #!/bin/bash
-
+CI_BUILD () {
 echo "start the build"
 
 mvn package
@@ -17,11 +17,47 @@ if [ $status == 0 ]
     buildNo=$BUILD_NUMBER
   	tar -cvf $project_$branch-$buildtype-$buildNo.zip ./webapp/target/*.war
 
-  	curl -u 'admin:38920139' -XPUT "http://13.233.99.57:8081/artifactory/CI-BUILDS/" -T $project_$branch-$buildtype-$buildNo.zip
-
+  	curl -u 'admin:38920139' -XPUT "http://35.154.161.74:8081/artifactory/CI-BUILDS/" -T $project_$branch-$buildtype-$buildNo.zip
 
   	rm -rf ./$project_$branch-$buildtype-$buildNo.zip
 
-    else
-	echo "this is artifactory niku ardhamavthundha"
+  else
+    	echo "unable to push arifact bcz of build failure"
+fi
+
+}
+Nightly_BUILD () {
+echo "start the build"
+
+mvn clean package
+
+status=$?
+
+if [ $status == 0 ]
+
+  then
+  	echo "start nightly build"
+    
+    project=wezva;
+    branch=$(git rev-parse --abbrev-ref HEAD)
+    buildtype=$JOB_NAME
+    buildNo=$BUILD_NUMBER
+  	tar -cvf $project_$branch-$buildtype-$buildNo.zip ./webapp/target/*.war
+
+  	curl -u 'admin:38920139' -XPUT "http://35.154.161.74:8081/artifactory/nightly-BUILDS/" -T $project_$branch-$buildtype-$buildNo.zip
+
+  	rm -rf ./$project_$branch-$buildtype-$buildNo.zip
+
+  else
+    	echo "unable to push arifact bcz of build failure"
+fi
+
+}
+
+
+if [ $1 == CI_BUILD ] ;
+  then
+  	CI_BUILD
+  else
+    Nightly_BUILD
 fi
