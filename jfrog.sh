@@ -20,7 +20,7 @@ if [ $status == 0 ]
          buildNo=$BUILD_NUMBER
   	 tar -cvf $project--$branch--$buildtype--$buildNo.tar ./webapp/target/*.war
 
-  	 curl -u 'admin:38920139' -XPUT "http://13.127.178.190:8081/artifactory/CI-BUILDS/" -T $project--$branch--$buildtype--$buildNo.tar
+  	 curl -u 'admin:38920139' -XPUT "http://13.232.33.232:8081/artifactory/CI-BUILDS/" -T $project--$branch--$buildtype--$buildNo.tar
 
   	 rm -rf ./$project--$branch--$buildtype--$buildNo.tar
 
