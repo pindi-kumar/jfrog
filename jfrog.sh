@@ -1,5 +1,5 @@
 #!/bin/bash
-CI_BUILDS () {
+CI-BUILDS () {
 echo "start the build"
 
 mvn package
@@ -26,7 +26,9 @@ if [ $status == 0 ]
 fi
 
 }
-Nightly_BUILD () {
+
+Nightly-BUILDS () {
+
 echo "start the build"
 
 mvn clean package
@@ -55,9 +57,9 @@ fi
 }
 
 
-if [ $1 == CI_BUILDS ] ;
+if [ $1 == CI-BUILDS ] ;
   then
-  	CI_BUILD
+  	CI-BUILDS
   else
     Nightly_BUILD
 fi
