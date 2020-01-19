@@ -10,7 +10,7 @@ if [ $status == 0 ]
 
   then
   	echo "start ci build"
-    branch=$GIT_BRANCH 
+    #branch=$GIT_BRANCH 
     project=wezva;
     buildtype=$JOB_NAME
     buildNo=$BUILD_NUMBER
