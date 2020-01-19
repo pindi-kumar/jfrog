@@ -12,14 +12,13 @@ if [ $status == 0 ]
   	echo "start ci build"
     
     project=wezva;
-    branch=$(git checkout -f ${GIT_BRANCH#origin/})
     buildtype=$JOB_NAME
     buildNo=$BUILD_NUMBER
-  	tar -cvf $project_$branch-$buildtype-$buildNo.zip ./webapp/target/*.war
+  	tar -cvf $project-$buildtype-$buildNo.zip ./webapp/target/*.war
 
-  	curl -u 'admin:38920139' -XPUT "http://35.154.161.74:8081/artifactory/CI-BUILDS/" -T $project_$branch-$buildtype-$buildNo.zip
+  	curl -u 'admin:38920139' -XPUT "http://35.154.161.74:8081/artifactory/CI-BUILDS/" -T $project-$buildtype-$buildNo.zip
 
-  	rm -rf ./$project_$branch-$buildtype-$buildNo.zip
+  	rm -rf ./$project-$buildtype-$buildNo.zip
 
   else
     	echo "unable to push arifact bcz of build failure"
@@ -44,11 +43,11 @@ if [ $status == 0 ]
     branch=$(git rev-parse --abbrev-ref HEAD)
     buildtype=$JOB_NAME
     buildNo=$BUILD_NUMBER
-  	tar -cvf $project_$branch-$buildtype-$buildNo.zip ./webapp/target/*.war
+  	tar -cvf $project-$buildtype-$buildNo.zip ./webapp/target/*.war
 
-  	curl -u 'admin:38920139' -XPUT "http://35.154.161.74:8081/artifactory/nightly-BUILDS/" -T $project_$branch-$buildtype-$buildNo.zip
+  	curl -u 'admin:38920139' -XPUT "http://35.154.161.74:8081/artifactory/nightly-BUILDS/" -T $project-$buildtype-$buildNo.zip
 
-  	rm -rf ./$project_$branch-$buildtype-$buildNo.zip
+  	rm -rf ./$project-$buildtype-$buildNo.zip
 
   else
     	echo "unable to push arifact bcz of build failure"
